@@ -6,9 +6,12 @@
   <title>Contact Us</title>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
+      font-family: "Inter", Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,36 +19,70 @@
       margin: 0;
     }
     form {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      padding: 35px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       display: flex;
       flex-direction: column;
-      width: 320px;
-      gap: 12px;
+      width: 350px;
+      color: #fff;
+      animation: fadeIn 0.6s ease;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
     input, textarea {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 12px;
       font-size: 1em;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    input:focus, textarea:focus {
+      box-shadow: 0 0 0 3px rgba(116, 235, 213, 0.4);
     }
     button {
       background: #007bff;
-      color: white;
       border: none;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 12px;
+      border-radius: 8px;
       font-size: 1em;
+      color: #fff;
+      font-weight: 600;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.1s ease;
     }
-    button:hover { background: #0056b3; }
+    button:hover {
+      background: #0056b3;
+      transform: translateY(-1px);
+    }
+    button:active {
+      transform: translateY(1px);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 400px) {
+      form {
+        width: 90%;
+        padding: 25px 20px;
+      }
+    }
   </style>
   <script>
-    // Initialize EmailJS
-    (function(){
-      emailjs.init("zyhByM6lDxBWJRVhT"); // replace with your Public Key
+    (function() {
+      emailjs.init("zyhByM6lDxBWJRVhT"); // Replace with your Public Key
     })();
 
     function sendEmail(event) {
@@ -59,11 +96,11 @@
 
       emailjs.send("service_4yy0a0b", "template_bg7n64i", params)
         .then(() => {
-          alert("Message sent successfully!");
+          alert("✅ Message sent successfully!");
           document.getElementById("contact-form").reset();
         })
         .catch(err => {
-          alert("Failed to send message: " + JSON.stringify(err));
+          alert("❌ Failed to send message: " + JSON.stringify(err));
         });
     }
   </script>
