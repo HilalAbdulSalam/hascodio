@@ -8,7 +8,7 @@
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap');
-
+  
     :root {
       --primary: #007bff;
       --dark-bg: #0a192f;
@@ -16,6 +16,9 @@
       --light: #f8f9fa;
       --text-light: #e6f1ff;
       --text-muted: #8892b0;
+    }
+    a {
+      text-decoration: none;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -105,6 +108,8 @@
       font-weight: 600;
       transition: 0.3s;
       margin: 10px;
+      width: 200px;      /* same width for both */
+      text-align: center;
     }
     .hero .btn:hover { opacity: 0.9; }
 
@@ -237,9 +242,15 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-    }
+    @media (max-width: 600px) {
+  .hero h1 { font-size: 2.2rem; }
+
+  .btn {
+    width: 100%;
+    display: block;
+  }
+}
+
   </style>
 </head>
 
