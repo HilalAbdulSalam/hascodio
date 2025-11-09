@@ -1,380 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hascodio - Solving What Matters</title>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hascodio - Solving What Matters</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap');
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap');
 
-    :root {
-      --primary: #007bff;
-      --dark-bg: #0a192f;
-      --section-bg: #112240;
-      --light: #f8f9fa;
-      --text-light: #e6f1ff;
-      --text-muted: #8892b0;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    a { text-decoration: none; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: var(--dark-bg);
-      color: var(--text-light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    h1, h2, h3 {
-      font-family: 'Poppins', sans-serif;
-      color: var(--light);
-    }
+        :root {
+            --primary: #007bff;
+            --dark-bg: #0a192f;
+            --section-bg: #112240;
+            --light: #ccd6f6; /* Changed for better contrast */
+            --text-light: #e6f1ff;
+            --text-muted: #8892b0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a { text-decoration: none; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--light);
+        }
 
-    /* Navbar */
-    .navbar {
-      background: rgba(10, 25, 47, 0.95);
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    .navbar .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo img {
-      height: 40px;
-      border-radius: 6px;
-      background: #0E1D35;
-      padding: 3px;
-    }
-    .logo-text {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--light);
-    }
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
-    .nav-links a {
-      color: var(--text-light);
-      transition: 0.3s;
-    }
-    .nav-links a:hover { color: var(--primary); }
+        /* Utility Classes */
+        .text-primary { color: var(--primary); }
+        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
 
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 20px;
-      background: linear-gradient(120deg, #0a192f, #112240);
-      animation: fadeIn 1.5s ease;
-    }
-    .hero-logo {
-      width: 100px;
-      height: 100px;
-      border-radius: 12px;
-      background: #0E1D35;
-      padding: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 25px rgba(0,123,255,0.4);
-      animation: logoFade 1.5s ease;
-    }
-    @keyframes logoFade {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 25, 47, 0.95);
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .navbar .container {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo img {
+            height: 40px;
+            border-radius: 6px;
+            background: #0E1D35;
+            padding: 3px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--light);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: var(--text-light);
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      max-width: 700px;
-      color: var(--text-muted);
-      margin-bottom: 25px;
-    }
-    .hero .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: 12px 30px;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: 0.3s;
-      margin: 10px;
-      width: 200px;
-      text-align: center;
-    }
-    .hero .btn:hover { opacity: 0.9; }
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(120deg, #0a192f, #112240);
+            animation: fadeIn 1.5s ease;
+        }
+        .hero-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            background: #0E1D35;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(0,123,255,0.4);
+            animation: logoFade 1.5s ease;
+        }
+        @keyframes logoFade {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            max-width: 700px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            animation: fadeIn 1.8s ease;
+        }
+        
+        /* Button Styles (Expanded) */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: 1px solid var(--primary);
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        .btn-secondary:hover {
+            background: rgba(0, 123, 255, 0.1);
+            color: #fff;
+        }
+        .hero-buttons {
+            margin-top: 20px;
+            animation: fadeIn 2.1s ease;
+        }
 
-    /* Services */
-    .services {
-      padding: 100px 20px;
-      background: var(--section-bg);
-      text-align: center;
-    }
-    .services h2 { margin-bottom: 20px; }
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-    .service-card {
-      background: var(--dark-bg);
-      padding: 40px 20px;
-      border-radius: 10px;
-      transition: 0.3s;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 25px rgba(0,123,255,0.3);
-    }
-    .service-card .icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      color: var(--primary);
-    }
 
-    /* Steps */
-    .steps {
-      padding: 100px 20px;
-      text-align: center;
-      background: var(--dark-bg);
-    }
-    .steps h2 { margin-bottom: 40px; }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .step-card {
-      background: var(--section-bg);
-      padding: 30px;
-      border-radius: 10px;
-    }
-    .step-number {
-      font-size: 2.5rem;
-      color: var(--primary);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    /* Contact */
-    #contact {
-      background: var(--section-bg);
-      padding: 100px 20px;
-      text-align: center;
-    }
-    #contact h2 { margin-bottom: 20px; }
-    #contact p {
-      color: var(--text-muted);
-      margin-bottom: 30px;
-    }
-    .contact-form {
-      max-width: 600px;
-      margin: auto;
-      text-align: left;
-    }
-    .form-group { margin-bottom: 20px; }
-    label { display: block; margin-bottom: 5px; color: var(--text-light); }
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
-    }
-    textarea { min-height: 120px; resize: vertical; }
-    .form-submit-btn {
-      width: 100%;
-      background: var(--primary);
-      color: #fff;
-      padding: 14px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .form-submit-btn:hover { opacity: 0.9; }
+        /* Services */
+        .services {
+            padding: 100px 20px;
+            background: var(--section-bg);
+            text-align: center;
+        }
+        .services h2 { margin-bottom: 20px; }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        .service-card {
+            background: var(--dark-bg);
+            padding: 40px 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0,123,255,0.3);
+        }
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
 
-    /* Spinner */
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--primary);
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 10px auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    #spinner p {
-      color: #fff;
-      font-size: 0.9rem;
-      margin-top: 8px;
-      text-align: center;
-    }
+        /* Steps */
+        .steps {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--dark-bg);
+        }
+        .steps h2 { margin-bottom: 40px; }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .step-card {
+            background: var(--section-bg);
+            padding: 30px;
+            border-radius: 10px;
+        }
+        .step-number {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-    footer {
-      background: #091629;
-      padding: 30px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
+        /* Contact */
+        #contact {
+            background: var(--section-bg);
+            padding: 100px 20px;
+            text-align: center;
+        }
+        #contact h2 { margin-bottom: 20px; }
+        #contact p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+            text-align: left;
+        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; color: var(--text-light); }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            /* Added dark background and text color for inputs */
+            background: var(--dark-bg);
+            color: var(--text-light);
+            border: 1px solid var(--dark-bg);
+            font-size: 1rem;
+        }
+        textarea { min-height: 120px; resize: vertical; }
+        .form-submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .form-submit-btn:hover { opacity: 0.9; }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 2.2rem; }
-      .btn { width: 100%; display: block; }
-    }
-  </style>
+        /* Spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #spinner p {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        footer {
+            background: #091629;
+            padding: 30px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2rem; }
+            /* Adjusted for the new hero-buttons wrapper */
+            .hero-buttons .btn { width: 90%; display: block; margin: 10px auto; } 
+        }
+    </style>
 </head>
 
 <body>
-  <nav class="navbar">
-    <div class="container">
-      <a href="#" class="logo">
-        <img src="assets/favicon.png" alt="Hascodio Logo" />
-        <span class="logo-text">Hascodio</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact" class="btn">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="Hascodio Logo" /> 
+                <span class="logo-text">Hascodio</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact" class="btn btn-secondary">Contact</a></li> 
+            </ul>
+        </div>
+    </nav>
 
-  <section class="hero">
-    <img src="assets/favicon.png" alt="Hascodio Logo" class="hero-logo">
-    <h1>Stop Manual Work. Start Solving What Matters.</h1>
-    <p>Hascodio builds custom automation and software that powers your business — from smart spreadsheets to full-scale mobile applications.</p>
-    <a href="#contact" class="btn">Start My Project</a>
-    <a href="#services" class="btn">View Our Services</a>
-  </section>
+    <section class="hero">
+        <img src="assets/logo.png" alt="Hascodio Logo" class="hero-logo">
+        <div class="container"> 
+            <h1><span class="text-primary">Solving What Matters.</span> Smart Solutions for Real Problems.</h1>
+            <p>
+                At Hascodio, we focus on impact. We help businesses simplify operations, eliminate inefficiencies, and unlock growth through intelligent automation and custom technology.
+                <br><br>
+                Our approach is practical — understand the challenge, design the right system, and deliver measurable results. Whether it’s streamlining workflows, integrating APIs, or building data-driven tools, we create solutions that work quietly but powerfully behind the scenes.
+                <br><br>
+                We don’t chase trends. We solve what matters.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">Start My Project</a>
+                <a href="#services" class="btn btn-secondary">View Our Services</a>
+            </div>
+        </div>
+        </section>
 
-  <section id="services" class="services">
-    <h2>Your Problems, Solved by Our Experts</h2>
-    <div class="service-grid">
-      <div class="service-card"><div class="icon">📱</div><h3>Mobile Apps (iOS & Android)</h3><p>Cross-platform mobile apps for your business.</p></div>
-      <div class="service-card"><div class="icon">📊</div><h3>Excel VBA & Macro Automation</h3><p>Automate repetitive tasks and build dashboards.</p></div>
-      <div class="service-card"><div class="icon">🐍</div><h3>Custom Python Software</h3><p>Scalable, high-performance desktop tools and APIs.</p></div>
-      <div class="service-card"><div class="icon">📄</div><h3>Google Sheet Automation</h3><p>Automate reports and connect APIs inside Sheets.</p></div>
-    </div>
-  </section>
+    <section id="services" class="services">
+        <h2>Your Problems, Solved by Our Experts</h2>
+        <div class="container">
+          <div class="service-grid">
+            <div class="service-card"><div class="icon">📱</div><h3>Mobile Apps (iOS & Android)</h3><p>Cross-platform mobile apps for your business.</p></div>
+            <div class="service-card"><div class="icon">📊</div><h3>Excel VBA & Macro Automation</h3><p>Automate repetitive tasks and build dashboards.</p></div>
+            <div class="service-card"><div class="icon">🐍</div><h3>Custom Python Software</h3><p>Scalable, high-performance desktop tools and APIs.</p></div>
+            <div class="service-card"><div class="icon">📄</div><h3>Google Sheet Automation</h3><p>Automate reports and connect APIs inside Sheets.</p></div>
+          </div>
+        </div>
+    </section>
 
-  <section class="steps">
-    <h2>From Idea to Solution in 3 Simple Steps</h2>
-    <div class="steps-grid">
-      <div class="step-card"><div class="step-number">1</div><h3>Discover & Define</h3><p>We clarify goals and scope.</p></div>
-      <div class="step-card"><div class="step-number">2</div><h3>Build & Iterate</h3><p>We build, test, and refine your solution.</p></div>
-      <div class="step-card"><div class="step-number">3</div><h3>Deliver & Support</h3><p>We launch and support your finished product.</p></div>
-    </div>
-  </section>
+    <section class="steps">
+        <div class="container">
+            <h2>From Idea to Solution in 3 Simple Steps</h2>
+            <div class="steps-grid">
+                <div class="step-card"><div class="step-number">1</div><h3>Discover & Define</h3><p>We clarify goals and scope.</p></div>
+                <div class="step-card"><div class="step-number">2</div><h3>Build & Iterate</h3><p>We build, test, and refine your solution.</p></div>
+                <div class="step-card"><div class="step-number">3</div><h3>Deliver & Support</h3><p>We launch and support your finished product.</p></div>
+            </div>
+        </div>
+    </section>
 
-  <section id="contact">
-    <h2>Ready to Solve Your Next Big Challenge?</h2>
-    <p>Let's build the solution you've been waiting for. Get your free consultation today.</p>
-    <form id="contact-form" class="contact-form" onsubmit="sendEmail(event)">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input id="name" type="text" required />
-      </div>
-      <div class="form-group">
-        <label for="email">Your Email</label>
-        <input id="email" type="email" required />
-      </div>
-      <div class="form-group">
-        <label for="message">What problem can we help you solve?</label>
-        <textarea id="message" required></textarea>
-      </div>
-      <button type="submit" class="form-submit-btn">Get Our Free Consultation</button>
-      <div id="spinner" style="display:none;">
-        <div class="loader"></div>
-        <p>Sending...</p>
-      </div>
-    </form>
-  </section>
+    <section id="contact">
+        <div class="container">
+            <h2>Ready to Solve Your Next Big Challenge?</h2>
+            <p>Let's build the solution you've been waiting for. Get your free consultation today.</p>
+            <form id="contact-form" class="contact-form" onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input id="name" type="text" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input id="email" type="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="message">What problem can we help you solve?</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="form-submit-btn">Get Our Free Consultation</button>
+                <div id="spinner" style="display:none;">
+                    <div class="loader"></div>
+                    <p>Sending...</p>
+                </div>
+            </form>
+        </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Hascodio. All rights reserved.</p>
-  </footer>
+    <footer>
+        <p>© 2025 Hascodio. All rights reserved.</p>
+    </footer>
 
-  <script>
-    (function() {
-      emailjs.init("zyhByM6lDxBWJRVhT");
-    })();
+    <script>
+        (function() {
+            emailjs.init("zyhByM6lDxBWJRVhT");
+        })();
 
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
 
-    function sendEmail(event) {
-      event.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-      const spinner = document.getElementById("spinner");
-      const button = document.querySelector(".form-submit-btn");
+        function sendEmail(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const spinner = document.getElementById("spinner");
+            const button = document.querySelector(".form-submit-btn");
 
-      if (name.length < 2) return alert("Please enter a valid name.");
-      if (!validateEmail(email)) return alert("Please enter a valid email address.");
-      if (message.length < 5) return alert("Please enter a longer message.");
+            if (name.length < 2) return alert("Please enter a valid name.");
+            if (!validateEmail(email)) return alert("Please enter a valid email address.");
+            if (message.length < 5) return alert("Please enter a longer message.");
 
-      spinner.style.display = "block";
-      button.disabled = true;
-      button.textContent = "Sending...";
+            spinner.style.display = "block";
+            button.disabled = true;
+            button.textContent = "Sending...";
 
-      const params = { from_name: name, reply_to: email, message };
+            const params = { from_name: name, reply_to: email, message };
 
-      emailjs.send("service_4yy0a0b", "template_bg7n64i", params)
-        .then(() => {
-          spinner.innerHTML = '<div class="loader"></div><p>Message sent ✅</p>';
-          document.getElementById("contact-form").reset();
-          setTimeout(() => { spinner.style.display = "none"; }, 1500);
-        })
-        .catch((err) => {
-          alert("❌ Failed to send message. Check console for details.");
-          console.error(err);
-          spinner.style.display = "none";
-        })
-        .finally(() => {
-          button.disabled = false;
-          button.textContent = "Get Our Free Consultation";
-        });
-    }
-  </script>
+            emailjs.send("service_4yy0a0b", "template_bg7n64i", params)
+                .then(() => {
+                    // Update spinner content for success
+                    spinner.innerHTML = '<div class="loader"></div><p>Message sent ✅</p>'; 
+                    document.getElementById("contact-form").reset();
+                    // Keep success message visible slightly longer
+                    setTimeout(() => { spinner.style.display = "none"; }, 2500); 
+                })
+                .catch((err) => {
+                    alert("❌ Failed to send message. Check console for details.");
+                    console.error(err);
+                    spinner.style.display = "none";
+                })
+                .finally(() => {
+                    button.disabled = false;
+                    button.textContent = "Get Our Free Consultation";
+                });
+        }
+    </script>
 </body>
 </html>
