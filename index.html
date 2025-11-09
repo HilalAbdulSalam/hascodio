@@ -4,433 +4,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hascodio - Solving What Matters</title>
-    <style>
-        /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap');
 
-        /* --- Global Styles --- */
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* --- Fonts and Variables --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap');
         :root {
-            --primary-blue: #0052cc; /* Approx. from your logo */
+            --primary-blue: #0052cc;
             --dark-navy: #1E2A3B;
             --light-grey: #F8F9FA;
             --text-color: #333;
+            --section-padding: 80px 0;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html {
+            scroll-behavior: smooth;
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--text-color);
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            color: var(--text-color); 
             line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark-navy);
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            padding: 80px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: var(--primary-blue);
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-blue);
-            border: 2px solid var(--primary-blue);
-        }
-        .btn-secondary:hover {
-            background: var(--primary-blue);
-            color: #fff;
-        }
-
-        /* --- 1. Navigation Bar --- */
-        .navbar {
             background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .navbar .logo img {
-            height: 40px; /* Adjust as needed */
-            margin-right: 10px;
-            background: #fff; /* or #F8F9FA */
-            border-radius: 6px;
-            padding: 4px;
-        }
-
-        .navbar .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark-navy);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-        .nav-links li {
-            margin-left: 25px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-navy);
-            font-weight: 500;
-        }
-
-        /* --- 2. Hero Section --- */
-        .hero {
-            background: var(--light-grey);
-            text-align: center;
-            padding: 100px 0;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            color: var(--dark-navy);
-        }
-
-        .hero .sub-headline {
-            font-size: 1.25rem;
-            color: #555;
-            max-width: 700px;
-            margin: 1rem auto 2rem;
-        }
-
-        .hero-buttons .btn {
-            margin: 0 10px;
-        }
-
-        /* --- 3. Services Section --- */
-        .services h2 {
-            margin-bottom: 4rem;
-        }
-
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
+            overflow-x: hidden; /* Prevents horizontal scroll from animations */
         }
         
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; color: var(--dark-navy); margin-bottom: 1rem; }
+        h2 { font-size: 2.8rem; text-align: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: var(--section-padding); }
+
+        .btn { display: inline-block; padding: 12px 28px; border-radius: 5px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; transition: .3s; }
+        .btn-primary { background: var(--primary-blue); color: #fff; box-shadow: 0 4px 15px rgba(0, 82, 204, 0.3); }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4); }
+        .btn-secondary { background: transparent; color: var(--primary-blue); border: 2px solid var(--primary-blue); }
+        .btn-secondary:hover { background: var(--primary-blue); color: #fff; }
+
+        /* --- NEW: Animation --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .service-card .icon {
-            font-size: 3rem;
-            display: block;
+        .section-animate {
+            animation: slideUpFade 1s ease-out forwards;
+        }
+
+        /* --- 1. Navbar (Redesigned) --- */
+        .navbar { 
+            background: rgba(255, 255, 255, 0.8); /* Frosted glass effect */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            padding: 15px 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .navbar .logo img { height: 40px; margin-right: 10px; border-radius: 6px; }
+        .logo-text { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; color: var(--dark-navy); text-decoration: none; }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { text-decoration: none; color: var(--dark-navy); font-weight: 500; position: relative; }
+        .nav-links a::after { /* Add hover underline effect */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+        /* --- 2. Hero (Redesigned) --- */
+        .hero { 
+            text-align: center; 
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--dark-navy), var(--primary-blue));
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+            color: #fff;
+        }
+        .hero h1 { 
+            font-size: 4rem; 
+            color: #fff;
+            animation: slideUpFade 1s ease-out;
+        }
+        .hero .sub-headline { 
+            font-size: 1.25rem; 
+            color: rgba(255, 255, 255, 0.8); 
+            max-width: 700px; 
+            margin: 1rem auto 2rem; 
+            animation: slideUpFade 1.2s ease-out;
+        }
+        .hero-buttons {
+            animation: slideUpFade 1.4s ease-out;
+        }
+        .hero-buttons .btn { margin: 0 10px; }
+        .hero-buttons .btn-secondary { /* Special hero ghost button */
+            border-color: #fff;
+            color: #fff;
+        }
+        .hero-buttons .btn-secondary:hover {
+            background: #fff;
+            color: var(--dark-navy);
+        }
+
+        /* --- 3. Services (Redesigned) --- */
+        .services h2 { margin-bottom: 4rem; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { 
+            background: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            padding: 40px 30px; 
+            text-align: center; 
+            transition: all .3s ease; 
+            border-top: 4px solid transparent;
+        }
+        .service-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1); 
+            border-top-color: var(--primary-blue);
+        }
+        .service-card .icon { 
+            font-size: 3.5rem; 
             margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
             color: var(--primary-blue);
         }
+        .service-card h3 { font-size: 1.5rem; color: var(--dark-navy); }
 
-        .service-card p {
-            font-size: 1rem;
+        /* --- 4. Process (Redesigned) --- */
+        .process { background: var(--light-grey); }
+        .process h2 { margin-bottom: 4rem; }
+        .process-steps { display: flex; justify-content: space-between; gap: 30px; text-align: center; }
+        .process-step { 
+            flex: 1; 
+            padding: 20px;
+            /* Add sequential animations */
+            opacity: 0;
+            animation: slideUpFade 0.8s ease-out forwards;
+        }
+        .process-step:nth-child(2) { animation-delay: 0.2s; }
+        .process-step:nth-child(3) { animation-delay: 0.4s; }
+
+        .step-number { 
+            display: inline-block; 
+            width: 60px; 
+            height: 60px; 
+            line-height: 60px; 
+            border-radius: 50%; 
+            background: var(--primary-blue); 
+            color: #fff; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-bottom: 1rem; 
+            box-shadow: 0 5px 15px rgba(0, 82, 204, 0.3);
         }
 
-        /* --- 4. How We Work Section --- */
-        .process {
-            background: var(--light-grey);
+        /* --- 5. Why Us (Redesigned) --- */
+        .why-us {
+            background: #fff;
         }
+        .why-us .container { display: flex; align-items: center; gap: 50px; }
+        .why-us-content { flex: 2; }
+        .why-us-content h2 { text-align: left; font-size: 2.8rem; }
+        .why-us-content .motto { font-size: 1.5rem; font-family: 'Poppins', sans-serif; color: var(--primary-blue); font-weight: 600; margin-bottom: 1.5rem; }
         
-        .process h2 {
-            margin-bottom: 4rem;
-        }
-
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            gap: 30px;
-            text-align: center;
-        }
-
-        .process-step {
+        .why-us-logo { /* NEW: Make the logo a design element */
             flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
-        .step-number {
-            display: inline-block;
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
+        .logo-container {
+            background: #fff;
             border-radius: 50%;
-            background: var(--primary-blue);
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
-
-        .process-step h3 {
-            font-size: 1.5rem;
-        }
-
-        /* --- 5. "Why Hascodio?" Section --- */
-        .why-us .container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .why-us-content {
-            flex: 2;
-        }
-
-        .why-us-content h2 {
-            text-align: left;
-            font-size: 2.5rem;
-        }
-
-        .why-us-content .motto {
-            font-size: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-            color: #555;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-        }
-
-        .why-us-content p {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        .why-us-logo {
-            flex: 1;
-            text-align: center;
-        }
-
-        .why-us-logo img {
-            max-width: 200px;
-            opacity: 0.8;
-        }
-
-        /* --- 6. Final CTA Section (Contact) --- */
-        .cta-final {
-            background: var(--dark-navy);
-            color: #fff;
-            text-align: center;
-        }
-
-        .cta-final h2 {
-            color: #fff;
-            font-size: 2.5rem;
-        }
-
-        .cta-final p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .contact-form {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
+        .why-us-logo img { 
+            max-width: 150px; 
+            opacity: 1;
             display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
+        /* --- 6. Contact Section (Redesigned) --- */
+        .cta-final { 
+            background: var(--dark-navy); 
+            color: #fff; 
+            text-align: center; 
+        }
+        .cta-final h2 { color: #fff; font-size: 2.5rem; }
+        .cta-final p { font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; color: rgba(255, 255, 255, 0.8); }
+        .contact-form { max-width: 700px; margin: 0 auto; text-align: left; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
+        
+        /* NEW: Premium Form Styling */
+        .form-group input, .form-group textarea { 
+            width: 100%; 
+            padding: 15px; 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            border-radius: 5px; 
             font-size: 1rem;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-        }
-
-        .form-submit-btn {
-            background: var(--primary-blue);
+            background: rgba(255, 255, 255, 0.05); /* Translucent */
             color: #fff;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
-
-        .form-submit-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* --- 7. Footer --- */
-        footer {
-            background: #f1f1f1;
-            padding: 50px 0;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 40px;
+        .form-group textarea { min-height: 150px; }
+        
+        /* NEW: Focus Glow Effect */
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 10px rgba(0, 82, 204, 0.5);
+            background: rgba(255, 255, 255, 0.1);
         }
         
-        .footer-col .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-blue);
+        /* NEW: Add placeholder styles */
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .footer-col .motto {
-            font-style: italic;
-            color: #555;
-            margin-top: 5px;
+        .form-submit-btn { 
+            background: var(--primary-blue); 
+            color: #fff; 
+            padding: 15px 30px; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 1.1rem; 
+            font-family: 'Poppins', sans-serif; 
+            cursor: pointer; 
+            width: 100%; 
+            transition: .3s; 
+        }
+        .form-submit-btn:hover { opacity: 0.9; box-shadow: 0 6px 20px rgba(0, 82, 204, 0.4); }
+        .form-submit-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
         }
 
-        .footer-col h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
+        /* --- 7. Footer (Redesigned) --- */
+        footer { background: var(--light-grey); padding: 50px 0; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+        .footer-col h4 { font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--dark-navy); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 10px; }
+        .footer-col a { color: #555; text-decoration: none; transition: color 0.3s ease; }
+        .footer-col a:hover { color: var(--primary-blue); }
+        .footer-bottom { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #777; }
 
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col a {
-            color: #555;
-            text-decoration: none;
-        }
-        .footer-col a:hover {
-            color: var(--primary-blue);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #777;
-        }
-
-
-        /* --- Responsive Design --- */
+        /* --- 8. Responsive --- */
         @media (max-width: 768px) {
-            h2 {
-                font-size: 2rem;
-            }
-
-            .nav-links {
-                display: none; /* Simple hide for mobile. A real site would use a burger menu. */
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .process-steps {
-                flex-direction: column;
-            }
-
-            .why-us .container {
-                flex-direction: column;
-            }
-
-            .why-us-content h2 {
-                text-align: center;
-            }
-
-            .why-us-logo {
-                margin-top: 2rem;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
+            h2 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links { display: none; } /* Needs JS for a burger menu */
+            .process-steps { flex-direction: column; }
+            .why-us .container { flex-direction: column; }
+            .why-us-content h2 { text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+        
+        /* --- EmailJS Spinner --- */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        #spinner p {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body>
 
+<body>
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">
+            <a href="#" class="logo" style="text-decoration:none; display:flex; align-items:center;">
                 <img src="assets/logo.jpg" alt="Hascodio Logo">
                 <span class="logo-text">Hascodio</span>
             </a>
@@ -457,99 +341,103 @@
         </div>
     </header>
 
-    <main>
-        <section id="services" class="services">
-            <div class="container">
-                <h2>Your Problems, Solved by Our Experts</h2>
-                <div class="service-grid">
-                    <div class="service-card">
-                        <span class="icon">📊</span>
-                        <h3>Excel VBA & Macro Automation</h3>
-                        <p>Automate repetitive tasks, build custom dashboards, and process complex data in seconds. Turn Excel into your most powerful tool.</p>
-                    </div>
-                    <div class="service-card">
-                        <span class="icon">🐍</span>
-                        <h3>Custom Python Software</h3>
-                        <p>We build scalable, high-performance desktop applications, data analysis tools, and backend systems tailored to your exact business needs.</p>
-                    </div>
-                    <div class="service-card">
-                        <span class="icon">📄</span>
-                        <h3>Google Sheet Automation</h3>
-                        <p>Supercharge your cloud workflow with Google Apps Script. We connect APIs, automate reports, and build custom menus right inside your sheets.</p>
-                    </div>
-                    <div class="service-card">
-                        <span class="icon">📱</span>
-                        <h3>Flutter (iOS & Android) Apps</h3>
-                        <p>Reach your customers everywhere. We design and develop beautiful, high-performance native apps for both Android and iOS from a single codebase.</p>
-                    </div>
+    <section id="services" class="services">
+        <div class="container section-animate">
+            <h2>Your Problems, Solved by Our Experts</h2>
+            <div class="service-grid">
+                
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-file-excel"></i></span>
+                    <h3>Excel VBA & Macro Automation</h3>
+                    <p>Automate repetitive tasks and build dashboards.</p>
+                </div>
+
+                <div class="service-card">
+                    <span class="icon"><i class="fab fa-python"></i></span>
+                    <h3>Custom Python Software</h3>
+                    <p>Scalable, high-performance desktop tools and APIs.</p>
+                </div>
+                
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-table-cells"></i></span>
+                    <h3>Google Sheet Automation</h3>
+                    <p>Automate reports and connect APIs inside Sheets.</p>
+                </div>
+                
+                <div class="service-card">
+                    <span class="icon"><i class="fas fa-mobile-screen-button"></i></span>
+                    <h3>Flutter (iOS & Android) Apps</h3>
+                    <p>Cross-platform mobile apps for your business.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="process">
+        <div class="container section-animate">
+            <h2>From Idea to Solution in 3 Simple Steps</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <span class="step-number">1</span>
+                    <h3>Discover & Define</h3>
+                    <p>We clarify goals and scope.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">2</span>
+                    <h3>Build & Iterate</h3>
+                    <p>We build, test, and refine your solution.</p>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">3</span>
+                    <h3>Deliver & Support</h3>
+                    <p>We launch and support your finished product.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="process" class="process">
-            <div class="container">
-                <h2>From Idea to Solution in 3 Simple Steps</h2>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <span class="step-number">1</span>
-                        <h3>Discover & Define</h3>
-                        <p>We start with a deep dive into your problem. We listen, ask questions, and define the clear goals for your project.</p>
-                    </div>
-                    <div class="process-step">
-                        <span class="step-number">2</span>
-                        <h3>Build & Iterate</h3>
-                        <p>Our developers get to work, building your solution with clean, efficient code. We provide regular updates so you're always in the loop.</p>
-                    </div>
-                    <div class="process-step">
-                        <span class="step-number">3</span>
-                        <h3>Deliver & Support</h3>
-                        <p>We deliver a polished, tested product. We provide training and support to ensure it's adopted successfully and truly solves what matters.</p>
-                    </div>
-                </div>
+    <section id="why-us" class="why-us">
+        <div class="container section-animate">
+            <div class="why-us-content">
+                <h2>We Don't Just Build... We Solve.</h2>
+                <p class="motto">"Solving what matters" is our entire process.</p>
+                <p>We eliminate inefficiencies, simplify workflows, and automate growth, turning your business bottlenecks into breakthroughs.</p>
             </div>
-        </section>
-
-        <section id="why-us" class="why-us">
-            <div class="container">
-                <div class="why-us-content">
-                    <h2>We Don't Just Build... We Solve.</h2>
-                    <p class="motto">"Solving what matters" is our entire process.</p>
-                    <p>
-                        We don't build tech for tech's sake. We solve for efficiency, eliminating the manual tasks that drain your time. We solve for growth, giving you the custom tools you need to scale.
-                    </p>
-                    <p>
-                        We turn messy data and complex workflows into simple, automated, and powerful systems.
-                    </p>
-                </div>
-                <div class="why-us-logo">
+            <div class="why-us-logo">
+                <div class="logo-container">
                     <img src="assets/logo.jpg" alt="Hascodio Logo Icon">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="cta-final">
-            <div class="container">
-                <h2>Ready to Solve Your Next Big Challenge?</h2>
-                <p>Stop letting manual processes slow you down. Let's build the solution you've been waiting for. Get your free consultation today.</p>
-                
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">What problem can we help you solve?</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit-btn">Get My Free Consultation</button>
-                </form>
-            </div>
-        </section>
-    </main>
+    <section id="contact" class="cta-final">
+        <div class="container section-animate">
+            <h2>Ready to Solve Your Next Big Challenge?</h2>
+            <p>Let's build the solution you've been waiting for. Get your free consultation today.</p>
+            
+            <form id="contact-form" class="contact-form" onsubmit="sendEmail(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="e.g. Jane Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. jane.doe@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">What problem can we help you solve?</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Describe your project or challenge..." required></textarea>
+                </div>
+                <button type="submit" class="form-submit-btn">Get Our Free Consultation</button>
+                <div id="spinner" style="display:none; text-align:center; margin-top:20px;">
+                    <div class="loader"></div>
+                    <p>Sending...</p>
+                </div>
+            </form>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
@@ -561,26 +449,81 @@
                 <div class="footer-col">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#services">Excel VBA Macros</a></li>
-                        <li><a href="#services">Python Software</a></li>
-                        <li><a href="#services">Google Sheet Automation</a></li>
-                        <li><a href="#services">Flutter Applications</a></li>
+                        <li><a href="#services">Excel VBA</a></li>
+                        <li><a href="#services">Python</a></li>
+                        <li><a href="#services">Google Sheets</a></li>
+                        <li><a href="#services">Flutter</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#why-us">About Us</a></li>
+                        <li><a href="#why-us">About</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Hascodio. All rights reserved.</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; 2025 Hascodio. All rights reserved.</p></div>
         </div>
     </footer>
 
+    <script>
+        (function() {
+            emailjs.init("zyhByM6lDxBWJRVhT"); // Your EmailJS public key
+        })();
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function sendEmail(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const spinner = document.getElementById("spinner");
+            const button = document.querySelector(".form-submit-btn");
+
+            if (name.length < 2) {
+                alert("Please enter a valid name.");
+                return;
+            }
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+            if (message.length < 5) {
+                alert("Please enter a message of at least 5 characters.");
+                return;
+            }
+
+            spinner.style.display = "block";
+            button.disabled = true;
+            button.textContent = "Sending...";
+
+            const params = { from_name: name, reply_to: email, message: message };
+
+            emailjs.send("service_4yy0a0b", "template_bg7n64i", params)
+                .then(() => {
+                    spinner.innerHTML = '<div class="loader"></div><p>Message sent! We'll be in touch. ✅</p>';
+                    document.getElementById("contact-form").reset();
+                    setTimeout(() => { 
+                        spinner.style.display = "none"; 
+                        spinner.innerHTML = '<div class="loader"></div><p>Sending...</p>'; // Reset spinner text
+                    }, 3000);
+                })
+                .catch((err) => {
+                    alert("❌ Failed to send message. Please try again.");
+                    console.error(err);
+                    spinner.style.display = "none";
+                })
+                .finally(() => {
+                    button.disabled = false;
+                    button.textContent = "Get Our Free Consultation";
+                });
+        }
+    </script>
 </body>
 </html>
