@@ -12,6 +12,7 @@
     :root {
       --primary: #007bff;
       --dark-bg: #0a192f;
+      --section-bg: #112240;
       --light: #f8f9fa;
       --text-light: #e6f1ff;
       --text-muted: #8892b0;
@@ -29,7 +30,6 @@
       font-family: 'Poppins', sans-serif;
       color: var(--light);
     }
-    a { text-decoration: none; color: inherit; }
 
     /* Navbar */
     .navbar {
@@ -52,7 +52,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      text-decoration: none;
     }
     .logo img {
       height: 40px;
@@ -64,7 +63,6 @@
       font-size: 24px;
       font-weight: 700;
       color: var(--light);
-      text-decoration: none;
     }
     .nav-links {
       display: flex;
@@ -75,30 +73,28 @@
       color: var(--text-light);
       transition: 0.3s;
     }
-    .nav-links a:hover {
-      color: var(--primary);
-    }
+    .nav-links a:hover { color: var(--primary); }
 
     /* Hero */
     .hero {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      flex-direction: column;
-      background: linear-gradient(120deg, #0a192f, #112240);
       padding: 0 20px;
+      background: linear-gradient(120deg, #0a192f, #112240);
+      animation: fadeIn 1.5s ease;
     }
     .hero h1 {
       font-size: 3rem;
-      animation: fadeInDown 1s ease;
+      margin-bottom: 10px;
     }
     .hero p {
-      max-width: 600px;
-      margin: 20px auto;
+      max-width: 700px;
       color: var(--text-muted);
-      animation: fadeInUp 1.2s ease;
+      margin-bottom: 25px;
     }
     .hero .btn {
       display: inline-block;
@@ -108,26 +104,22 @@
       border-radius: 6px;
       font-weight: 600;
       transition: 0.3s;
-      margin-top: 20px;
+      margin: 10px;
     }
-    .hero .btn:hover {
-      opacity: 0.9;
-    }
-    @keyframes fadeInDown {
-      0% { opacity: 0; transform: translateY(-20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .hero .btn:hover { opacity: 0.9; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Services */
     .services {
       padding: 100px 20px;
+      background: var(--section-bg);
       text-align: center;
-      background: #112240;
     }
+    .services h2 { margin-bottom: 20px; }
     .service-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -135,7 +127,7 @@
       margin-top: 60px;
     }
     .service-card {
-      background: #0a192f;
+      background: var(--dark-bg);
       padding: 40px 20px;
       border-radius: 10px;
       transition: 0.3s;
@@ -151,15 +143,38 @@
       color: var(--primary);
     }
 
+    /* Steps Section */
+    .steps {
+      padding: 100px 20px;
+      text-align: center;
+      background: var(--dark-bg);
+    }
+    .steps h2 { margin-bottom: 40px; }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .step-card {
+      background: var(--section-bg);
+      padding: 30px;
+      border-radius: 10px;
+    }
+    .step-number {
+      font-size: 2.5rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
     /* Contact */
     #contact {
-      background: #0a192f;
+      background: var(--section-bg);
       padding: 100px 20px;
       text-align: center;
     }
-    #contact h2 {
-      margin-bottom: 20px;
-    }
+    #contact h2 { margin-bottom: 20px; }
     #contact p {
       color: var(--text-muted);
       margin-bottom: 30px;
@@ -214,7 +229,6 @@
       text-align: center;
     }
 
-    /* Footer */
     footer {
       background: #091629;
       padding: 30px 0;
@@ -230,7 +244,6 @@
 </head>
 
 <body>
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
       <a href="#" class="logo">
@@ -244,28 +257,35 @@
     </div>
   </nav>
 
-  <!-- Hero -->
   <section class="hero">
-    <h1>Solving What Matters</h1>
-    <p>We build automation, apps, and systems that make your business efficient — Excel VBA, Python, Google Sheets, and Flutter.</p>
-    <a href="#contact" class="btn">Start Your Project</a>
+    <h1>Stop Manual Work. Start Solving What Matters.</h1>
+    <p>Hascodio builds custom automation and software that powers your business — from smart spreadsheets to full-scale mobile applications.</p>
+    <a href="#contact" class="btn">Start My Project</a>
+    <a href="#services" class="btn">View Our Services</a>
   </section>
 
-  <!-- Services -->
   <section id="services" class="services">
-    <h2>Our Expertise</h2>
+    <h2>Your Problems, Solved by Our Experts</h2>
     <div class="service-grid">
-      <div class="service-card"><div class="icon">📊</div><h3>Excel VBA Automation</h3><p>Streamline operations with smart macros and reports.</p></div>
-      <div class="service-card"><div class="icon">🐍</div><h3>Python Applications</h3><p>Build scalable tools, APIs, and automation software.</p></div>
-      <div class="service-card"><div class="icon">📄</div><h3>Google Sheets Automation</h3><p>Connect data sources and automate reporting.</p></div>
-      <div class="service-card"><div class="icon">📱</div><h3>Flutter Apps</h3><p>Cross-platform Android & iOS apps for your business.</p></div>
+      <div class="service-card"><div class="icon">📊</div><h3>Excel VBA & Macro Automation</h3><p>Automate repetitive tasks and build dashboards.</p></div>
+      <div class="service-card"><div class="icon">🐍</div><h3>Custom Python Software</h3><p>Scalable, high-performance desktop tools and APIs.</p></div>
+      <div class="service-card"><div class="icon">📄</div><h3>Google Sheet Automation</h3><p>Automate reports and connect APIs inside Sheets.</p></div>
+      <div class="service-card"><div class="icon">📱</div><h3>Flutter (iOS & Android) Apps</h3><p>Cross-platform mobile apps for your business.</p></div>
     </div>
   </section>
 
-  <!-- Contact -->
+  <section class="steps">
+    <h2>From Idea to Solution in 3 Simple Steps</h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-number">1</div><h3>Discover & Define</h3><p>We clarify goals and scope.</p></div>
+      <div class="step-card"><div class="step-number">2</div><h3>Build & Iterate</h3><p>We build, test, and refine your solution.</p></div>
+      <div class="step-card"><div class="step-number">3</div><h3>Deliver & Support</h3><p>We launch and support your finished product.</p></div>
+    </div>
+  </section>
+
   <section id="contact">
-    <h2>Let’s Build Together</h2>
-    <p>Get your free consultation today.</p>
+    <h2>Ready to Solve Your Next Big Challenge?</h2>
+    <p>Let's build the solution you've been waiting for. Get your free consultation today.</p>
     <form id="contact-form" class="contact-form" onsubmit="sendEmail(event)">
       <div class="form-group">
         <label for="name">Your Name</label>
@@ -276,10 +296,10 @@
         <input id="email" type="email" required />
       </div>
       <div class="form-group">
-        <label for="message">Message</label>
+        <label for="message">What problem can we help you solve?</label>
         <textarea id="message" required></textarea>
       </div>
-      <button type="submit" class="form-submit-btn">Send Message</button>
+      <button type="submit" class="form-submit-btn">Get Our Free Consultation</button>
       <div id="spinner" style="display:none;">
         <div class="loader"></div>
         <p>Sending...</p>
@@ -288,10 +308,9 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 Hascodio. All Rights Reserved.</p>
+    <p>© 2025 Hascodio. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
   <script>
     (function() {
       emailjs.init("zyhByM6lDxBWJRVhT");
@@ -304,7 +323,6 @@
 
     function sendEmail(event) {
       event.preventDefault();
-
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
@@ -334,7 +352,7 @@
         })
         .finally(() => {
           button.disabled = false;
-          button.textContent = "Send Message";
+          button.textContent = "Get Our Free Consultation";
         });
     }
   </script>
