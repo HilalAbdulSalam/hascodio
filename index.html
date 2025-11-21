@@ -12,6 +12,21 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap');
 
+        .social-links {
+            margin-bottom: 15px;
+        }
+        
+        .social-icon {
+            font-size: 1.8rem;
+            margin: 0 12px;
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+        
+        .social-icon:hover {
+            color: var(--primary);
+        }
+        
         :root {
             --primary: #007bff;
             --dark-bg: #0a192f;
@@ -381,6 +396,18 @@
     </section>
 
     <footer>
+        <div class="social-links">
+            <a href="https://www.fiverr.com/yourusername" target="_blank" class="social-icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </a>
+            <a href="https://facebook.com/yourprofile" target="_blank" class="social-icon">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://instagram.com/yourprofile" target="_blank" class="social-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+
         <p>© 2025 Hascodio. All rights reserved.</p>
     </footer>
 
